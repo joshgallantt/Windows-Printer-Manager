@@ -1,5 +1,4 @@
 class Printer {
-
     [string]$id;
     [string]$name;
     [string]$location;
