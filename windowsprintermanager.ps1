@@ -8,7 +8,7 @@ You can Download the file with an example driver here:
 
 https://github.com/joshgallantt/windowsprintermanager/archive/refs/heads/main.zip
 
-Just drag the folder to your desktop and run start.ps1.. it will install a HP printer as an example, just dont forget to uninstall it.
+Just drag the folder to your desktop and run start.ps1.. it will install a HP printer as an example, just dont forget to uninstall it as well!
 
 Example: C:\Users\Josh\Desktop\Windows Printer Manager\start.ps1
 
