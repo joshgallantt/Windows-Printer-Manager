@@ -63,7 +63,7 @@ function main-menu{
     }
     
     else{
-        Write-Output("The following Gymshark printers are installed on this device:`n")
+        Write-Output("The following GSHQ printers are installed on this device:`n")
         Foreach ($printer in  $printerslist){
             if($printer.installed){
                 Write-Output "$($printer.name), $($printer.location), $($printer.address), $($printer.driver)`n"
