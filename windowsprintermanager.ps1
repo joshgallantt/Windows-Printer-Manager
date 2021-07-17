@@ -53,7 +53,7 @@ function main-menu{
     Write-Output(" ======================= PRINTER MANAGER =======================`n")
 
     if(!$someinstalled){
-        Write-Output("There are currently no Gymshark printers installed on this device.`n")
+        Write-Output("There are currently no printers installed on this device.`n")
         $selection = Read-Host "1. install a printer`n2. quit`n`nSelect an Option"
         switch ($selection){
         '1' {install-menu} 
@@ -61,7 +61,7 @@ function main-menu{
         }
     }
     else{
-        Write-Output("The following Gymshark printers are installed on this device:`n")
+        Write-Output("The following printers are installed on this device:`n")
         Foreach ($printer in  $printerslist){
             if($printer.installed){
                 Write-Output "$($printer.name), $($printer.location), $($printer.address), $($printer.driver)`n"
