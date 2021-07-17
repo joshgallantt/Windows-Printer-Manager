@@ -79,14 +79,11 @@ function main-menu{
 
 <#
 
-Designed to 
-
 No need to edit anything above.
 
 Below is where you add new printer objects to the $printerslist array (make sure you also add any new printers in the install/uninstall function)
 
 If you're unsure where to get installed printer driver files, "C:\Windows\System32\DriverStore\FileRepository"
-
 
 #>
 
