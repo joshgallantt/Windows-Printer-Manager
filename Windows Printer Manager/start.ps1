@@ -1,3 +1,5 @@
+PowerShell -NoProfile -ExecutionPolicy Unrestricted -Command "& {Start-Process PowerShell -ArgumentList '-NoProfile -ExecutionPolicy Unrestricted -File ""start.ps1""' -Verb RunAs}";
+
 class Printer {
     [string]$id;
     [string]$name;
