@@ -2,7 +2,7 @@
 
 Hi, I moved the script to here:
 
-https://github.com/joshgallantt/windowsprintermanager/blob/main/Windows%20Printer%20Manager/windows-printer-manager.ps1
+https://github.com/joshgallantt/windowsprintermanager/blob/main/Windows%20Printer%20Manager/start.ps1
 
 You can Download the file with an example driver here:
 
