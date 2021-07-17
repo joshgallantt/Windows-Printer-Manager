@@ -1,4 +1,4 @@
-﻿PowerShell -NoProfile -ExecutionPolicy Unrestricted -Command "& {Start-Process PowerShell -ArgumentList '-NoProfile -ExecutionPolicy Unrestricted -File ""script.ps1""' -Verb RunAs}";
+﻿PowerShell -NoProfile -ExecutionPolicy Unrestricted -Command "& {Start-Process PowerShell -ArgumentList '-NoProfile -ExecutionPolicy Unrestricted -File ""windows-printer-manager.ps1""' -Verb RunAs}";
 
 class Printer {
     [string]$id;
