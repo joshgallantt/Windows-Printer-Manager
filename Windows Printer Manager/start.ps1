@@ -51,7 +51,7 @@ function printer-choices{
         }
 }
 
-<# No need to go paseed here! :D #>
+<# No need to go below! :D #>
 
 
 class Printer {
