@@ -1,5 +1,3 @@
-﻿PowerShell -NoProfile -ExecutionPolicy Unrestricted -Command "& {Start-Process PowerShell -ArgumentList '-NoProfile -ExecutionPolicy Unrestricted -File ""start.ps1""' -Verb RunAs}";
-
 class Printer {
     [string]$id;
     [string]$name;
@@ -24,7 +22,6 @@ class Printer {
         Get-PrinterDriver
         Add-Printer -DriverName $this.driver -Name $this.name -PortName $this.name -Location $this.location
         $this.installed = $true
-        Start-Sleep -s 3
 
     }
 
@@ -34,7 +31,6 @@ class Printer {
                 Remove-Printer -Name $this.name
                 Remove-PrinterPort -Name $this.name
                 $this.installed = $false
-                Start-Sleep -s 3
             }
         }
     }
@@ -42,6 +38,7 @@ class Printer {
 
 function main-menu{
     cls
+
     $someinstalled = $false
     Foreach ($installedprinter in  Get-Printer){
         Foreach ($printer in  $printerslist){
@@ -58,7 +55,7 @@ function main-menu{
         Write-Output("There are currently no GSHQ printers installed on this device.`n")
         $selection = Read-Host "(1) install a printer`n(Q) quit`n`nSelect an Option"
         switch ($selection){
-        '1' {install-menu} 
+        '1' {install-menu "Install"} 
         'q' {exit}
         }
     }
@@ -71,12 +68,26 @@ function main-menu{
             }
             $selection = Read-Host "(1) install/reinstall a printer`n(2) uninstall a printer`n(Q) quit`n`nSelect an Option"
             switch ($selection){
-                '1' {install-menu} 
-                '2' {uninstall-menu} 
+                '1' {install-menu "Install"} 
+                '2' {install-menu "Uninstall"} 
                 'q' {exit}
             }
         }
     }
+}
+
+function printer-handler($printerobject, [string]$method){
+    cls
+    Write-Output("$($method)ing $($method.name) please wait... ")
+        if($method -eq "Install"){
+            $printerobject.Install()
+        }
+
+        else{
+        $printerobject.Install()
+        }
+    main-menu
+    Start-Sleep -s 3
 }
 
 <#
@@ -120,74 +131,39 @@ $printerslist = $Printer1, $Printer2, $Printer3
 $Title = "Printer Manager by Josh"
 $host.UI.RawUI.WindowTitle = $Title
 
-function install-menu{
-    cls
-    
-    Write-Output(" ======================= PRINTER INSTALL =======================`n")
-
-    Write-Output("The following GSHQ printers can be installed on this device:`n")
-    $printerslist
-
-    $selection = Read-Host "`nEnter the ID of the printer you wish to install/reinstall, (m) for main menu, or (q) to exit"
-        switch ($selection){
-            '1' {
-                cls
-                Write-Output("Installing $($Printer1.name) please wait... ")
-                $Printer1.install()
-                main-menu
-                }
-            '2' {
-                cls
-                Write-Output("Installing $($Printer2.name) please wait... ")
-                $Printer2.install()
-                main-menu
-                }
-            '3' {
-                cls
-                Write-Output("Installing $($Printer3.name) please wait... ")
-                $Printer3.install()
-                main-menu
-                }
-            'm' {main-menu}
-            'q' {exit}
-        }
-}
-
-function uninstall-menu{
+function install-menu([string]$type){
     cls
 
-    Write-Output(" ====================== PRINTER UNINSTALL =====================`n")
+    Write-Output(" ======================= PRINTER $($type.ToUpper()) =======================`n")
 
-    Write-Output("The following GSHQ printers can be uninstalled on this device:`n")
+    Write-Output("The following GSHQ printers can be $($type)ed on this device:`n")
 
-    Foreach ($printer in  $printerslist){
-        if($printer.installed){
-            $printer
-        }
-    $selection = Read-Host "`nEnter the ID of the printer you wish to uninstall, (m) for main menu, or (q) to exit"
-        switch ($selection){
-            '1' {
-                cls
-                Write-Output("Uninstalling $($Printer1.name) please wait... ")
-                $Printer1.uninstall()
-                main-menu
-                }
-            '2' {
-                cls
-                Write-Output("Uninstalling $($Printer2.name) please wait... ")
-                $Printer2.uninstall()
-                main-menu
-                }
-            '3' {
-                cls
-                Write-Output("Uninstalling $($Printer3.name) please wait... ")
-                $Printer3.uninstall()
-                main-menu
-                }
-            'm' {main-menu}
-            'q' {exit}
+    if($type = "Uninstall"){
+        Foreach ($printer in  $printerslist){
+            if($printer.installed){
+                $printer
+            }
         }
     }
+
+    else{
+        $printerslist
+    }
+
+    $selection = Read-Host "`nEnter the ID of the printer you wish to $($type), (m) for main menu, or (q) to exit"
+        switch ($selection){
+            '1' {
+                printer-handler $Printer1 $type
+                }
+            '2' {
+                printer-handler $Printer2 $type
+                }
+            '3' {
+                printer-handler $Printer3 $type
+                }
+            'm' {main-menu}
+            'q' {exit}
+        }
 }
 
 main-menu
