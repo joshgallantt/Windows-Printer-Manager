@@ -10,4 +10,6 @@ https://github.com/joshgallantt/windowsprintermanager/archive/refs/heads/main.zi
 
 Just drag the folder to your desktop and run start.ps1.. it will install a HP printer as an example, just dont forget to uninstall it.
 
+Example: C:\Users\Josh\Desktop\Windows Printer Manager\start.ps1
+
 *>
