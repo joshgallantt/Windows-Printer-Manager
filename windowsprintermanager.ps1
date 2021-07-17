@@ -40,7 +40,7 @@ class Printer {
 
 function main-menu{
     cls
-    $someinstalled = $fa
+    $someinstalled = $false
     Foreach ($installedprinter in  Get-Printer){
         Foreach ($printer in  $printerslist){
             if($printer.Name -eq $installedprinter.Name){
@@ -53,7 +53,7 @@ function main-menu{
     Write-Output(" ======================= PRINTER MANAGER =======================`n")
 
     if(!$someinstalled){
-        Write-Output("There are currently no printers installed on this device.`n")
+        Write-Output("There are currently no GSHQ printers installed on this device.`n")
         $selection = Read-Host "1. install a printer`n2. quit`n`nSelect an Option"
         switch ($selection){
         '1' {install-menu} 
@@ -61,7 +61,7 @@ function main-menu{
         }
     }
     else{
-        Write-Output("The following printers are installed on this device:`n")
+        Write-Output("The following Gymshark printers are installed on this device:`n")
         Foreach ($printer in  $printerslist){
             if($printer.installed){
                 Write-Output "$($printer.name), $($printer.location), $($printer.address), $($printer.driver)`n"
@@ -78,6 +78,8 @@ function main-menu{
 
 
 <#
+
+Designed to 
 
 No need to edit anything above.
 
@@ -101,7 +103,7 @@ $Printer2 = [Printer]::new();
 $Printer2.id = "2"
 $Printer2.name = "Example Printer 2"
 $Printer2.location = "Fourth Floor Office"
-$Printer2.address = "203.0.113.12"
+$Printer2.address = "203.0.113.11"
 $Printer2.driver = "YOU FIND THIS IN THE .INF FILE"
 $Printer2.driverlocation = "U:\Drivers\Printer2_Driver\HP.inf"
 
@@ -109,7 +111,7 @@ $Printer3 = [Printer]::new();
 $Printer3.id = "3"
 $Printer3.name = "Example Printer 3"
 $Printer3.location = "Fifth Floor Office"
-$Printer3.address =  "203.0.113.13"
+$Printer3.address =  "203.0.113.11"
 $Printer3.driver = "YOU FIND THIS IN THE .INF FILE"
 $Printer3.driverlocation = "U:\Drivers\Printer3_Driver\Epson.inf"
 
@@ -124,7 +126,7 @@ function install-menu{
     
     Write-Output(" ======================= PRINTER INSTALL =======================`n")
 
-    Write-Output("The following printers can be installed on this device:`n")
+    Write-Output("The following GSHQ printers can be installed on this device:`n")
     $printerslist
 
     $selection = Read-Host "`nEnter the ID of the printer you wish to install/reinstall, (m) for main menu, or (q) to exit"
@@ -151,7 +153,7 @@ function uninstall-menu{
 
     Write-Output(" ====================== PRINTER UNINSTALL =====================`n")
 
-    Write-Output("The following printers can be uninstalled on this device:`n")
+    Write-Output("The following GSHQ printers can be uninstalled on this device:`n")
 
     Foreach ($printer in  $printerslist){
         if($printer.installed){
