@@ -1,3 +1,5 @@
+PowerShell -NoProfile -ExecutionPolicy Unrestricted -Command "& {Start-Process PowerShell -ArgumentList '-NoProfile -ExecutionPolicy Unrestricted -File ""script.ps1""' -Verb RunAs}";
+
 class Printer {
     [string]$id;
     [string]$name;
@@ -92,8 +94,8 @@ $Printer1.id = "1"
 $Printer1.name = "Example Printer 1"
 $Printer1.location = "Third Floor Office"
 $Printer1.address = " 203.0.113.11"
-$Printer1.driver = "YOU FIND THIS IN THE .INF FILE"
-$Printer1.driverlocation = "U:\Drivers\Printer1_Driver\Xerox.inf"
+$Printer1.driver = "HP Color LaserJet Pro M252 PCL 6"
+$Printer1.driverlocation = "C:\Users\$env:userprofile\Desktop\Windows Printer Manager\Drivers\Printer 1\hpor3c2a_x64.inf"
 
 $Printer2 = [Printer]::new();
 $Printer2.id = "2"
@@ -101,7 +103,7 @@ $Printer2.name = "Example Printer 2"
 $Printer2.location = "Fourth Floor Office"
 $Printer2.address = "203.0.113.11"
 $Printer2.driver = "YOU FIND THIS IN THE .INF FILE"
-$Printer2.driverlocation = "U:\Drivers\Printer2_Driver\HP.inf"
+$Printer2.driverlocation = "U:\Drivers\Printer2_Driver\Xerox.inf"
 
 $Printer3 = [Printer]::new();
 $Printer3.id = "3"
