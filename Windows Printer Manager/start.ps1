@@ -2,11 +2,7 @@ PowerShell -NoProfile -ExecutionPolicy Unrestricted -Command "& {Start-Process P
 $Title = "Printer Manager by Josh"
 $host.UI.RawUI.WindowTitle = $Title
 
-
-<# ADD NEW PRINTERS HERE #>
-
-
-<# If you're unsure where to get installed printer driver files, "C:\Windows\System32\DriverStore\FileRepository" #>
+<# ADD NEW PRINTERS HERE (If you're unsure where to get installed printer driver files, "C:\Windows\System32\DriverStore\FileRepository) #>
 
 $Printer1 = [Printer]::new();
 $Printer1.id = "1"
@@ -155,6 +151,7 @@ function printer-handler($printerobject, [string]$method){
         else{
             $printerobject.Uninstall()
         }
+        
     cls
     Write-Host("`n   $($printerobject.name) $($method)ed!") -ForegroundColor "Green"
     Start-Sleep -s 1
@@ -187,13 +184,11 @@ function install-menu([string]$type){
             }
         }
     }
-
     Write-Host "Select an option:"
     Write-Host "  (num) the printer you wish to $($type)" -ForegroundColor "Yellow"
     Write-Host "  (M) for main menu" -ForegroundColor "Yellow"
     Write-Host "  (Q) to exit" -ForegroundColor "Yellow"
     printer-choices
-
 }
 
 main-menu
