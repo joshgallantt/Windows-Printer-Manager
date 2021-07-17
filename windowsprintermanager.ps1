@@ -8,7 +8,7 @@ class Printer {
     [string]$driverlocation;
     [bool] $installed = $false;
 
-    [void] install() {
+    [void] install(){
 
         Foreach ($printer in  Get-Printer){
             if($printer.name -eq $this.name){
@@ -60,6 +60,7 @@ function main-menu{
         'q' {exit}
         }
     }
+    
     else{
         Write-Output("The following Gymshark printers are installed on this device:`n")
         Foreach ($printer in  $printerslist){
@@ -75,7 +76,6 @@ function main-menu{
         }
     }
 }
-
 
 <#
 
