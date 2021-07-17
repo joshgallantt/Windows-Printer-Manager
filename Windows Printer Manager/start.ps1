@@ -10,7 +10,7 @@ class Printer {
     [bool] $installed = $false;
 
     [void] install(){
-
+        Write-Output("The following GSHQ printers can be uninstalled on this device:`n")
         Foreach ($printer in  Get-Printer){
             if($printer.name -eq $this.name){
                 Remove-Printer -Name $this.name
@@ -25,6 +25,7 @@ class Printer {
         Add-Printer -DriverName $this.driver -Name $this.name -PortName $this.name -Location $this.location
         $this.installed = $true
         Start-Sleep -s 3
+
     }
 
     [void] uninstall(){
@@ -55,7 +56,7 @@ function main-menu{
 
     if(!$someinstalled){
         Write-Output("There are currently no GSHQ printers installed on this device.`n")
-        $selection = Read-Host "1. install a printer`n2. quit`n`nSelect an Option"
+        $selection = Read-Host "(1) install a printer`n(Q) quit`n`nSelect an Option"
         switch ($selection){
         '1' {install-menu} 
         'q' {exit}
@@ -68,7 +69,7 @@ function main-menu{
             if($printer.installed){
                 Write-Output "$($printer.name), $($printer.location), $($printer.address), $($printer.driver)`n"
             }
-            $selection = Read-Host "1. install/reinstall a printer`n2. uninstall a printer`n3. quit`n`nSelect an Option"
+            $selection = Read-Host "(1) install/reinstall a printer`n(2) uninstall a printer`n(Q) quit`n`nSelect an Option"
             switch ($selection){
                 '1' {install-menu} 
                 '2' {uninstall-menu} 
@@ -130,14 +131,20 @@ function install-menu{
     $selection = Read-Host "`nEnter the ID of the printer you wish to install/reinstall, (m) for main menu, or (q) to exit"
         switch ($selection){
             '1' {
+                cls
+                Write-Output("Installing $($Printer1.name) please wait... ")
                 $Printer1.install()
                 main-menu
                 }
             '2' {
+                cls
+                Write-Output("Installing $($Printer2.name) please wait... ")
                 $Printer2.install()
                 main-menu
                 }
             '3' {
+                cls
+                Write-Output("Installing $($Printer3.name) please wait... ")
                 $Printer3.install()
                 main-menu
                 }
@@ -160,14 +167,20 @@ function uninstall-menu{
     $selection = Read-Host "`nEnter the ID of the printer you wish to uninstall, (m) for main menu, or (q) to exit"
         switch ($selection){
             '1' {
+                cls
+                Write-Output("Uninstalling $($Printer1.name) please wait... ")
                 $Printer1.uninstall()
                 main-menu
                 }
             '2' {
+                cls
+                Write-Output("Uninstalling $($Printer2.name) please wait... ")
                 $Printer2.uninstall()
                 main-menu
                 }
             '3' {
+                cls
+                Write-Output("Uninstalling $($Printer3.name) please wait... ")
                 $Printer3.uninstall()
                 main-menu
                 }
